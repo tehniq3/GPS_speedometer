@@ -808,6 +808,26 @@ citirestarebuton1 = digitalRead(sw1);  // read the state of the switch into a lo
         memorare1 = 0;
         memorare2 = 1;
         //lcd.clear();  
+diferenta0 = diferenta[timezone];
+if (diferenta0 < 0)
+   diferenta1 = - diferenta0;
+ else
+   diferenta1 = diferenta0;
+diferenta2 = 100 * diferenta1;
+lcd.setCursor(11,3); // move cursor to column 11 row 3
+if (diferenta1 < 10)  lcd.print(" ");
+  lcd.print("UTC");     
+if (diferenta0 > 0) lcd.print("+");
+if (diferenta0 < 0) lcd.print("-");
+if (diferenta0 != 0)
+{
+lcd.print(diferenta2 / 100);  
+if (diferenta2 % 100 == 0) lcd.print("   ");
+if (diferenta2 % 100 == 50) lcd.print(":30");
+if (diferenta2 % 100 == 75) lcd.print(":45");
+if (diferenta2 % 100 == 25) lcd.print(":15");
+}
+else lcd.print("     ");
       }
     }
   }
@@ -830,12 +850,8 @@ citirestarebuton2 = digitalRead(sw2);  // read the state of the switch into a lo
         time_offset = (float)diferenta[timezone]*3600.;
         memorare2 = 0;
         memorare1 = 1;
-        //lcd.clear();  
-      }
-    }
-  }
-
-diferenta0 = diferenta[timezone];
+        //lcd.clear(); 
+        diferenta0 = diferenta[timezone];
 if (diferenta0 < 0)
    diferenta1 = - diferenta0;
  else
@@ -854,7 +870,10 @@ if (diferenta2 % 100 == 50) lcd.print(":30");
 if (diferenta2 % 100 == 75) lcd.print(":45");
 if (diferenta2 % 100 == 25) lcd.print(":15");
 }
-else lcd.print("     ");
+else lcd.print("     "); 
+      }
+    }
+  }
 
 ultimastarebuton1 = citirestarebuton1;
 ultimastarebuton2 = citirestarebuton2;
@@ -868,6 +887,8 @@ ultimastarebuton2 = citirestarebuton2;
    delay(500);
    lcd.setCursor(12,2);
    lcd.print(" ");
+   lcd.setCursor(11,3); // move cursor to column 11 row 3
+   lcd.print("         ");
   }
 
   if (((millis() - ultimtpdebounce2) > tpscriere) and (memorare2 == 0))
@@ -879,6 +900,8 @@ ultimastarebuton2 = citirestarebuton2;
    delay(500);
    lcd.setCursor(12,2);
    lcd.print(" ");
+   lcd.setCursor(11,3); // move cursor to column 11 row 3
+   lcd.print("         ");
   }
  
   while (SoftSerial.available() > 0)
