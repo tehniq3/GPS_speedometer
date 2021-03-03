@@ -8,7 +8,7 @@
  * ver.2.0 - added local zone adjust for clock
 */
  
- #include <EEPROM.h>
+#include <EEPROM.h>
 #include <TinyGPS++.h>        // include TinyGPS++ library
 #include <TimeLib.h>          // include Arduino time library
 #include <SoftwareSerial.h>   // include software serial library
@@ -878,7 +878,14 @@ else lcd.print("     ");
 ultimastarebuton1 = citirestarebuton1;
 ultimastarebuton2 = citirestarebuton2;
 
-  if (((millis() - ultimtpdebounce1) > tpscriere) and (memorare1 == 0))
+if (memorare1 == 0)
+{
+  if (millis() - ultimtpdebounce1 > 1500)
+  {
+   lcd.setCursor(11,3); // move cursor to column 11 row 3
+   lcd.print("         ");
+  }
+  if (millis() - ultimtpdebounce1 > tpscriere)
   {
    EEPROM.update(adresa, timezone); // store in eeprom
    memorare1 = 1;
@@ -887,11 +894,17 @@ ultimastarebuton2 = citirestarebuton2;
    delay(500);
    lcd.setCursor(12,2);
    lcd.print(" ");
-   lcd.setCursor(11,3); // move cursor to column 11 row 3
-   lcd.print("         ");
   }
+}
 
-  if (((millis() - ultimtpdebounce2) > tpscriere) and (memorare2 == 0))
+if (memorare2 == 0)
+{
+  if (millis() - ultimtpdebounce2 > 1500)
+  {
+   lcd.setCursor(11,3); // move cursor to column 11 row 3
+   lcd.print("         ");   
+  }
+  if (millis() - ultimtpdebounce2 > tpscriere)
   {
    EEPROM.update(adresa, timezone); // store in eeprom
    memorare2 = 1;
@@ -900,9 +913,8 @@ ultimastarebuton2 = citirestarebuton2;
    delay(500);
    lcd.setCursor(12,2);
    lcd.print(" ");
-   lcd.setCursor(11,3); // move cursor to column 11 row 3
-   lcd.print("         ");
   }
+}
  
   while (SoftSerial.available() > 0)
   {
