@@ -12,3 +12,5 @@ https://nicuflorica.blogspot.com/search?q=GPS & https://nicuflorica.blogspot.com
 
 ![3](https://1.bp.blogspot.com/-a61o3Oc_zuM/YDUnVmyUWRI/AAAAAAAAdv0/VfMyaHQXKGA2rP61sDg06st8GYVt975qACLcBGAsYHQ/w200-h150/vitezometru_02.jpg)
 
+![schematic with adjust for local time zone](https://1.bp.blogspot.com/-T4uizTk_7tE/YDoujG9qIHI/AAAAAAAAdy4/k8Xs1ce-yFAYk5WvUXolGTtPTp51jo8EgCLcBGAsYHQ/s320/schema_GPS.png)
+
